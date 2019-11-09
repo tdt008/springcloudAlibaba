@@ -21,6 +21,8 @@
 .mvnw
 mvnw.cmd
 .mvn/
+mvnw
+target/
 
 *.idea
 *.iml
