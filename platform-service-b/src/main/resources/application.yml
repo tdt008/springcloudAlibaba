@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: platform-service-b
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: 3dd14094-6c67-45f2-a378-794e2f9cd19b
+
+server:
+  port: 9091
+  servlet:
+    context-path: /
