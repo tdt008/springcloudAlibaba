@@ -25,19 +25,19 @@ public class CheckController {
 
     @Autowired
     private DiscoveryClient discoveryClient;
-    @Autowired
-    private RestTemplate restTemplate;
+
 
     @RequestMapping("/check")
     public CommonResp check(){
-        String targetUrl = "http://platform-service-a/check";
+        String targetUri = "/check";
 
         List<ServiceInstance> instances = discoveryClient.getInstances("platform-service-a");
-        instances.stream()
-                .map(instance -> instance.getUri().toString() + "/**/**")
+        String targetUrl = instances.stream()
+                .map(instance -> instance.getUri().toString() + targetUri)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(String.format("当前示例：%s 不存在", "platform-service-a")));
 
+        RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(targetUrl, String.class);
         System.out.println("result:" + result);
 
