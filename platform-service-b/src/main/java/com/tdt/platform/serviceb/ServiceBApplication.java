@@ -21,9 +21,9 @@ public class ServiceBApplication {
         SpringApplication.run(ServiceBApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     @LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
-    }
+    }*/
 }

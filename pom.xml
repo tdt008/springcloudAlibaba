@@ -10,6 +10,7 @@
 
     <modules>
         <module>platform-service-a</module>
+        <module>platform-service-a-api</module>
         <module>platform-service-b</module>
     </modules>
 

@@ -20,9 +20,9 @@ import org.springframework.web.client.RestTemplate;
  * @description: CheckController
  * @since 2020/06/22 00:19
  */
-@RestController
+//@RestController
 public class CheckRibbonController {
-    @Value("${spring.application.name}")
+    /*@Value("${spring.application.name}")
     private String appName;
 
     @Autowired
@@ -38,7 +38,7 @@ public class CheckRibbonController {
         System.out.println("result:" + result);
 
         return new CommonResp(200, "Success");
-    }
+    }*/
 
 
 }
