@@ -26,7 +26,6 @@ public class CheckController {
     @Autowired
     private DiscoveryClient discoveryClient;
 
-
     @RequestMapping("/check")
     public CommonResp check(){
         String targetUri = "/check";
