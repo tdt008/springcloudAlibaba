@@ -9,6 +9,11 @@ public class CommonResp<T> implements Serializable {
 
     private T data;
 
+    public CommonResp(int code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
     public CommonResp(int code, String message, T data) {
         this.code = code;
         this.message = message;

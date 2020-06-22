@@ -190,3 +190,44 @@ platform-service-a的check方法如下，CheckVO、CommmonResp实体略：
 ````
 
 ### 1.3、启动a/b两个服务，访问b服务的check接口，看控制台输出可以发现调用了a服务的check接口
+
+## 2、整合进ribbon
+以还是以b调用a服务为例子。因为spring-cloud-starter-alibaba-nacos-discovery中已经包含了Ribbon，所以不需要加ribbon依赖.
+在b服务中将RestTemplate交给spring管理，并添加@LoadBalanced注解
+````
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+````
+application.yml中增加ribbon配置：
+````
+ribbon:
+  eager-load:
+    #开启饥饿加载
+    enabled: true
+    #为哪些服务的名称开启饥饿加载,多个用逗号分隔
+    clients: platform-service-a
+````
+
+服务b的check接口简化为：
+````
+@Value("${spring.application.name}")
+    private String appName;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @RequestMapping("/check")
+    public CommonResp check(){
+
+        String targetUrl = "http://platform-service-a/check";
+        // 当restTemplate组织请求的时候，Ribbon会自动把“platform-service-a”转换为该服务在Nacos上面的地址，并且进行负载均衡
+        String result = restTemplate.getForObject(targetUrl, String.class);
+
+        System.out.println("result:" + result);
+
+        return new CommonResp(200, "Success");
+    }
+````

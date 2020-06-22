@@ -9,7 +9,14 @@ spring:
         server-addr: localhost:8848
         namespace: 3dd14094-6c67-45f2-a378-794e2f9cd19b
 
+
 server:
   port: 9091
   servlet:
     context-path: /
+ribbon:
+  eager-load:
+    #开启饥饿加载
+    enabled: true
+    #为哪些服务的名称开启饥饿加载,多个用逗号分隔
+    clients: platform-service-a

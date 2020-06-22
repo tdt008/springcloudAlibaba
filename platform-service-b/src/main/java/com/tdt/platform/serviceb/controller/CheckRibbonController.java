@@ -4,6 +4,8 @@ import com.tdt.platform.serviceb.common.CheckVO;
 import com.tdt.platform.serviceb.common.CommonResp;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
@@ -13,37 +15,29 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @author tudoutiao
+ * @author 引入负载均衡
  * @version v1.0.0
  * @description: CheckController
  * @since 2020/06/22 00:19
  */
 @RestController
-public class CheckController {
+public class CheckRibbonController {
     @Value("${spring.application.name}")
     private String appName;
 
     @Autowired
-    private DiscoveryClient discoveryClient;
+    private RestTemplate restTemplate;
 
-    @RequestMapping("/check")
+    @RequestMapping("/check2")
     public CommonResp check(){
-        String targetUri = "/check";
 
-        List<ServiceInstance> instances = discoveryClient.getInstances("platform-service-a");
-        String targetUrl = instances.stream()
-                .map(instance -> instance.getUri().toString() + targetUri)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format("当前示例：%s 不存在", "platform-service-a")));
-
-        RestTemplate restTemplate = new RestTemplate();
+        String targetUrl = "http://platform-service-a/check";
+        // 当restTemplate组织请求的时候，Ribbon会自动把“platform-service-a”转换为该服务在Nacos上面的地址，并且进行负载均衡
         String result = restTemplate.getForObject(targetUrl, String.class);
+
         System.out.println("result:" + result);
 
-        CheckVO check = new CheckVO();
-        check.setAppName(appName);
-        check.setCheckTime(new Date());
-        return new CommonResp(200, "Success", check);
+        return new CommonResp(200, "Success");
     }
 
 
