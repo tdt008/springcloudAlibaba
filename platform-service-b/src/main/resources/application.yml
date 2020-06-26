@@ -16,7 +16,7 @@ spring:
         client-ip: 127.0.0.1
         # 指定和控制台通信的端口哦，默认值8719
         # 若不配置，会自动扫猫从8719开始扫猫，依次+1，知道值找到未被占用的端口
-        port: 8719
+        #port: 8719
         # 心跳发送周期，默认值null
         # 但在SimpleHttpHeartbeatSender会用默认值10秒
         heartbeat-interval-ms: 10000
