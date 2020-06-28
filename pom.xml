@@ -12,6 +12,7 @@
         <module>platform-service-a</module>
         <module>platform-service-a-api</module>
         <module>platform-service-b</module>
+        <module>platform-gateway</module>
     </modules>
 
     <properties>
