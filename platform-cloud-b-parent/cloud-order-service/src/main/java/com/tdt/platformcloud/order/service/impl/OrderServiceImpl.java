@@ -1,5 +1,6 @@
 package com.tdt.platformcloud.order.service.impl;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.tdt.platformcloud.order.converter.OrderConverter;
 import com.tdt.platformcloud.order.dao.OrderDAO;
 import com.tdt.platformcloud.order.domain.dto.OrderDTO;
@@ -17,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     private OrderConverter orderConverter;
 
+    @SentinelResource(value = "orderGetById")
     @Override
     public OrderDTO getById(Long id) {
         return orderConverter.orderDO2DTO(orderDAO.getById(id));
