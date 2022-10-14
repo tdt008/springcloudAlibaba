@@ -8,7 +8,4 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UserMapper extends BaseMapper<UserDO> {
-
-    @Select({"select * from user where id=#{id}"})
-    UserDO getById(@Param("id") Long id);
 }

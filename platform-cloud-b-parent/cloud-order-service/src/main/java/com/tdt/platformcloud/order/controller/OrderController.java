@@ -102,7 +102,6 @@ public class OrderController {
 
         // 从nacos中获取实例地址
         String url = "cloud-product-service";
-
         String realUrl = "http://" + url + "/cloud-product-service/product/";
 
         //通过restTemplate调用商品微服务
@@ -118,7 +117,8 @@ public class OrderController {
         order.setPname(product.getPname());
         order.setPprice(product.getPprice());
         order.setQuantity(1);
-        orderService.save(order);
+        // orderService.save(order);
+        log.info("下单成功：{}", order);
         return order;
     }
 
