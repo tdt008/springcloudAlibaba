@@ -41,6 +41,16 @@ spring:
         # 指定控制台服务的地址
         dashboard: localhost:8080
       enabled: true
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 127.0.0.1
+            data-id: cloud-order-service
+            group-id: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+            namespace: dev
+
 
 
 mybatis-plus:

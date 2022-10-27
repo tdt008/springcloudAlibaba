@@ -53,3 +53,15 @@ java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject
 默认用户名密码是 sentinel/sentinel
 
 `@SentinelResource`注解加到需要控制的接口上，sentinel必须要访问一下才能在sentinel控制台显示接口信息。
+
+
+sentinel规则持久化：
+引入依赖：
+```xml
+ <dependency>
+    <groupId>com.alibaba.csp</groupId>
+    <artifactId>sentinel-datasource-nacos</artifactId>
+</dependency>
+```
+
+
