@@ -26,6 +26,7 @@ public class ProductController {
         productDTO.setId(pid);
         productDTO.setPprice(BigDecimal.valueOf(100));
         productDTO.setPname("热销产品-tes");
+        productDTO.setTimestampsss(System.currentTimeMillis());
         return productDTO;
     }
 

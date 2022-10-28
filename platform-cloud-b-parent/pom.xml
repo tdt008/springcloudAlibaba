@@ -13,6 +13,7 @@
         <module>cloud-user-service</module>
         <module>cloud-product-service</module>
         <module>cloud-order-service</module>
+        <module>cloud-gateway</module>
     </modules>
 
     <properties>

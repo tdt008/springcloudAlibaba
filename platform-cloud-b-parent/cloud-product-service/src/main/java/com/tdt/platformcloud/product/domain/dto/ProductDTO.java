@@ -10,4 +10,5 @@ public class ProductDTO {
     private String pname;
     private BigDecimal pprice;
     private Integer stock;
+    private long timestampsss;
 }

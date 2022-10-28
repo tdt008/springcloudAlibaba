@@ -2,7 +2,8 @@
 server:
   port: 9002
   servlet:
-    context-path: /cloud-product-service
+#    context-path: /cloud-product-service
+    context-path: /
 
 spring:
   application:
